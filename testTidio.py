@@ -54,10 +54,9 @@ def escrever(palavras):
 
 def todosOsProdutos(qtdAzul, qtdRosa, qtdLaranja, qtdVerde, qtdLivro):
     setupInicial()
-
-    selecionar("pd")
-    selecionar("caixaTexto")
     if qtdAzul > 0 or qtdRosa > 0 or qtdLaranja > 0 or qtdVerde > 0:
+        selecionar("pd")
+        selecionar("caixaTexto") 
         escrever(qtdAzul)
         escrever(qtdRosa)
         escrever(qtdLaranja)
