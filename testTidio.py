@@ -1,9 +1,6 @@
 import pyautogui as pyau
 import time
-import sys
 import argparse
-
-
 
 def setupInicial():
     selecionar("chatBubble")
@@ -21,7 +18,6 @@ def setupInicial():
     escrever("alexandreffaria@me.com")
     escrever("31933006786")
     
-   
 def selecionar(objeto):
     if objeto == "chatBubble":
         coord = (1860,997)
@@ -70,7 +66,6 @@ def todosOsProdutos(qtdAzul, qtdRosa, qtdLaranja, qtdVerde, qtdLivro):
     selecionar("finalizarPedido")
     selecionar("irParaPedido")
     selecionar("linkPedido")
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Teste de geração de pedidos.")
