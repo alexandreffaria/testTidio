@@ -7,6 +7,9 @@ import argparse
 
 def setupInicial():
     selecionar("chatBubble")
+    pyau.hotkey('ctrl','r')
+    time.sleep(5)
+    selecionar("chatBubble")
     selecionar("caixaTexto")
     escrever("Alexandre")
     selecionar("revenda")
@@ -54,17 +57,17 @@ def todosOsProdutos(qtdAzul, qtdRosa, qtdLaranja, qtdVerde, qtdLivro):
 
     selecionar("pd")
     selecionar("caixaTexto")
-    
-    escrever(qtdAzul)
-    escrever(qtdRosa)
-    escrever(qtdLaranja)
-    escrever(qtdVerde)
+    if qtdAzul > 0 or qtdRosa > 0 or qtdLaranja > 0 or qtdVerde > 0:
+        escrever(qtdAzul)
+        escrever(qtdRosa)
+        escrever(qtdLaranja)
+        escrever(qtdVerde)
 
     if qtdLivro > 0:
         selecionar("livro")
         selecionar("caixaTexto")
         escrever(qtdLivro)
-        
+
     selecionar("finalizarPedido")
     selecionar("irParaPedido")
     selecionar("linkPedido")
