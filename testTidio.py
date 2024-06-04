@@ -1,20 +1,17 @@
 import pyautogui as pyau
 import time
 import sys
+import argparse
 
-if len(sys.argv) != 1:
-    print("Usage: python3 testTidio.py")
-    sys.exit(1)
 
 
 def setupInicial():
     selecionar("chatBubble")
     selecionar("caixaTexto")
-    pyau.typewrite("Alexandre\n")
-    time.sleep(.5)
+    escrever("Alexandre")
     selecionar("revenda")
     selecionar("dentista")
-    time.sleep(12)
+    time.sleep(10)
     selecionar("fazerPedido")
     selecionar("caixaTexto")
     escrever("Fo Fa")
@@ -39,6 +36,10 @@ def selecionar(objeto):
         coord = (1658,712)
     if objeto == "dentista":
         coord = (1615,831) 
+    if objeto == "irParaPedido":
+        coord = (1737,890)
+    if objeto == "linkPedido":
+        coord = (1675,770)
         
     pyau.moveTo(coord) 
     pyau.click()
@@ -48,22 +49,43 @@ def escrever(palavras):
     pyau.typewrite(f"{palavras}\n")
     time.sleep(2.5)
 
-def todosOsProdutos(qtdAzul, qtdRosa, qtdVerde, qtdLaranja, qtdLivro):
+def todosOsProdutos(qtdAzul, qtdRosa, qtdLaranja, qtdVerde, qtdLivro):
     setupInicial()
 
     selecionar("pd")
     selecionar("caixaTexto")
     
-    escrever(qtdRosa)
     escrever(qtdAzul)
+    escrever(qtdRosa)
     escrever(qtdLaranja)
     escrever(qtdVerde)
 
-    selecionar("livro")
-    selecionar("caixaTexto")
-    escrever(qtdLivro)
+    if qtdLivro > 0:
+        selecionar("livro")
+        selecionar("caixaTexto")
+        escrever(qtdLivro)
+        
     selecionar("finalizarPedido")
+    selecionar("irParaPedido")
+    selecionar("linkPedido")
 
-todosOsProdutos(qtdAzul=5,qtdRosa=5,qtdLaranja=0,qtdVerde=10,qtdLivro=5)
 
-time.sleep(5)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Teste de geração de pedidos.")
+    parser.add_argument('--azul', type=int, required=True, help='Quantidade de porta dentes azuis')
+    parser.add_argument('--rosa', type=int, required=True, help='Quantidade de porta dentes rosas')
+    parser.add_argument('--laranja', type=int, required=True, help='Quantidade de porta dentes laranjas')
+    parser.add_argument('--verde', type=int, required=True, help='Quantidade de porta dentes verdes')
+    parser.add_argument('--livro', type=int, required=True, help='Quantidade de livros')
+
+    args = parser.parse_args()
+
+    qtdAzul = args.azul
+    qtdRosa = args.rosa
+    qtdLaranja = args.laranja
+    qtdVerde = args.verde
+    qtdLivro = args.livro
+
+    todosOsProdutos(qtdAzul,qtdRosa,qtdLaranja,qtdVerde,qtdLivro)
+
+
